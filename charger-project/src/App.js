@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react';
 import './App.css';
 import List from './components/List'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginView from './components/LoginView';
-import ExampleProtectedView from './components/ExampleProtectedView'
-import ProtectedRoute from './components/ProtectedRoute'
+import ExampleProtectedView from './components/ExampleProtectedView';
+import ProtectedRoute from './components/ProtectedRoute';
 import Auth from './components/Auth';
 import Search from './components/Search'
 import Start from './components/Start';
@@ -15,7 +15,7 @@ import Titles from './components/Titles';
 import axios from 'axios';
 import constants from './constants.json';
 
-export default class App extends Component {
+class App extends React.Component {
   constructor(props){
     super(props);
     this.state={plug:[],
@@ -51,7 +51,7 @@ export default class App extends Component {
 
   /* This function illustrates how some protected API could be accessed */
   loadProtectedData = () => {
-    axios.get(constants.baseAddress + '/list', Auth.getAxiosAuth()).then(results => {
+    axios.get(constants.baseAddress + '/hello-protected', Auth.getAxiosAuth()).then(results => {
       this.setState({ someData: results.data });
     })
   }
@@ -60,7 +60,7 @@ export default class App extends Component {
   {
     event.preventDefault();
     console.log('post');
-    axios.post(constants.baseAddress +'/register', {
+    axios.post(constants.baseAddress +'/users', {
     username: event.target['username'].value,
     password: event.target['password'].value
   })
@@ -155,7 +155,7 @@ export default class App extends Component {
         <Route path="/digit" exact render={ routeProps => <Digit isAuthenticated ={this.state.isAuthenticated} choosePlug={this.choosePlug} {...routeProps}/> }/>
         <Route path="/register" exact render={ routeProps => <Register register={this.register} {...routeProps}/> }/>
         <Route path="/login" exact render={
-          (routeProps) =>
+                  (routeProps) =>
             <LoginView
               loginSuccess = { this.onLogin }
               loginFail = { this.onLoginFail }
@@ -176,3 +176,4 @@ export default class App extends Component {
     )
   }
 }
+export default App;

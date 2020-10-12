@@ -96,7 +96,7 @@ Promise.all(
   
       db.query(`CREATE TABLE IF NOT EXISTS plugger(
           id INT AUTO_INCREMENT PRIMARY KEY,
-          digit VARCHAR(32), name VARCHAR(32), type VARCHAR(32), connector VARCHAR(32), free VARCHAR(32), electrictity INT, address VARCHAR(32), city VARCHAR(32),
+          digit VARCHAR(32), name VARCHAR(32), type VARCHAR(32), connector VARCHAR(32), free VARCHAR(32), electricity INT, address VARCHAR(32), city VARCHAR(32),
           lat DECIMAL(7,5), lng DECIMAL(7,5)
       )`)
      
